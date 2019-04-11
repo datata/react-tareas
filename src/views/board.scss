@@ -1,0 +1,41 @@
+.board {
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    header {
+
+        background-color: tomato;
+        padding: 2em;
+
+        input {
+            all: unset;
+            color: white;
+            border-bottom: 1px solid white;
+            padding: 0.5em;
+            
+        }
+
+        
+
+    }
+
+    main {
+
+        background-color: grey;
+        flex: 1;
+        padding: 2em;
+
+        .task{
+
+            padding:1em;
+            
+        }
+
+    }
+
+
+
+
+}
