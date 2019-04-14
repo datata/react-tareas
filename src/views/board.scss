@@ -4,6 +4,16 @@
     display: flex;
     flex-direction: column;
 
+
+    .tasks{
+        padding: 3em;
+        display:flex;
+        flex-direction: row;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        align-content: flex-start;
+    }
+
     header {
 
         background-color: tomato;
@@ -13,26 +23,33 @@
             all: unset;
             color: white;
             border-bottom: 1px solid white;
-            padding: 0.5em;
-            
+            padding: 0.5em;          
         }
 
-        
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: white;
+            opacity: 1; /* Firefox */
+          }
+
+
+        button.addTask {       
+            all: unset;
+            color: white;                 
+            font-size: 2rem;
+            padding: 0em;
+            margin-left: 1em;
+        }
 
     }
 
     main {
-
         background-color: grey;
         flex: 1;
         padding: 2em;
 
-        .task{
-
-            padding:1em;
-            
+        .task {
+            padding: 1em;
         }
-
     }
 
 
