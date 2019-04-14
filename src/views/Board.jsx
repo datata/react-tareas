@@ -9,6 +9,7 @@ class Board extends Component {
         newTaskText: '',
         placeHolder: 'add task',
         tasks: JSON.parse(localStorage.getItem('tasks')) || [],
+        
     };
 
     componentDidUpdate() {
@@ -18,7 +19,8 @@ class Board extends Component {
     addTask = (text, numeroTarea) => {
         let newTask = {
             text,
-            numeroTarea
+            numeroTarea,
+            createAt: new Date()
         };
 
         this.setState({
@@ -62,6 +64,16 @@ class Board extends Component {
         });
     }
 
+    
+    removeTask = (id)=> {
+        console.log('remove');
+        
+        this.setState({
+            tasks: this.state.tasks.filter( task => task.numeroTarea !== id)
+        })
+    }
+
+
     render() {
         return (
             <div className="board">
@@ -90,7 +102,7 @@ class Board extends Component {
                 </header>
 
                 <main className="tasks" >
-                    {this.state.tasks.map((task) => <Task text={task.text} />)}
+                    {this.state.tasks.map((task) => <Task data={task} deleteTask={this.removeTask}/>)}
 
                 </main>
 
