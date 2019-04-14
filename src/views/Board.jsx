@@ -7,11 +7,10 @@ import './board.scss';
 
 class Board extends Component {
     state = {
+        
         newTaskText: '',
         placeHolder: 'add task',
-        tasks: [
-
-        ],
+        tasks: JSON.parse(localStorage.getItem('tasks')) || [],
     };
 
     // handleChange = (ev) => {
@@ -19,24 +18,28 @@ class Board extends Component {
     //     console.log({ [ev.target.name]: ev.target.value });
     // }
 
-    addTask = (text) => {
-        let newTask = { text, };
+    componentDidUpdate() {
+        localStorage.setItem('tasks', JSON.stringify(this.state.tasks))
+    }
+
+    addTask = (text,id) => {
+        let newTask = { text,id };
         this.setState({
             tasks: [newTask, ...this.state.tasks],
-            newTaskText:'',
-            
-        });  
+            newTaskText: '',
+
+        });
     }
-    
+
     handleChange = (ev) => {
-        this.setState({newTaskText:ev.target.value})
+        this.setState({ newTaskText: ev.target.value })
         console.log('handleChange')
     }
-    
-    handleKeyUp = (ev)=>{
+
+    handleKeyUp = (ev) => {
         console.log('handle KEYUP')
         if (ev.keyCode === 13) {
-        this.addTask(ev.target.value);
+            this.addTask(ev.target.value,this.state.tasks.length+1);
         }
 
     }
@@ -46,8 +49,9 @@ class Board extends Component {
         return (
             <div className="board">
                 <header>
-                    <input type="text" name="task" placeholder={this.state.placeHolder} onKeyUp={this.handleKeyUp} onChange={this.handleChange} value={this.state.newTaskText}/>
+                    <input type="text" name="task" placeholder={this.state.placeHolder} onKeyUp={this.handleKeyUp} onChange={this.handleChange} value={this.state.newTaskText} />
                     <button className="addTask">+</button>
+                    <span> Nº de tareas: {this.state.tasks.length}</span>
                 </header>
 
                 <main className="tasks" >
